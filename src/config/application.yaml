@@ -2,11 +2,13 @@ app:
   port: 3000
 
 database:
-  host: localhost
+  host: '127.0.0.1'
   port: 5432
   username: postgres
   password: postgres
   database: weather_activity_planner
+  synchronize: false
+  logging: true
 
 openMeteo:
   baseUrl: https://api.open-meteo.com/v1

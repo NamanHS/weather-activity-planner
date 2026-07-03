@@ -11,6 +11,8 @@ export const configurationSchema = z.object({
     username: z.string(),
     password: z.string(),
     database: z.string(),
+    synchronize: z.boolean(),
+    logging: z.boolean(),
   }),
 
   openMeteo: z.object({

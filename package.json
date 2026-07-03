@@ -18,7 +18,12 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "typeorm": "tsx ./node_modules/typeorm/cli.js",
+    "migration:create": "typeorm migration:create",
+    "migration:run": "npm run typeorm -- -d ./src/database/data-source.ts migration:run",
+    "migration:revert": "npm run typeorm -- -d ./src/database/data-source.ts migration:revert",
+    "migration:show": "npm run typeorm -- -d ./src/database/data-source.ts migration:show"
   },
   "dependencies": {
     "@apollo/server": "^5.5.1",
@@ -66,6 +71,8 @@
     "ts-loader": "^9.5.2",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
+    "tsx": "^4.22.5",
+    "typeorm-ts-node-commonjs": "^0.3.20",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.20.0"
   },
