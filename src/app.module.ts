@@ -6,8 +6,25 @@ import { SchedulerModule } from './modules/scheduler/scheduler.module';
 import { ConfigModule } from './config/config.module';
 import { DatabaseModule } from './database/database.module';
 import { ScheduleModule } from '@nestjs/schedule';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { join } from 'path';
 
 @Module({
-  imports: [ScheduleModule.forRoot(), ConfigModule, DatabaseModule, CityModule, ActivityModule, RecommendationModule, SchedulerModule],
+  imports: [
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      sortSchema: true,
+      playground: true,
+    }),
+    ScheduleModule.forRoot(),
+    ConfigModule, 
+    DatabaseModule, 
+    CityModule, 
+    ActivityModule, 
+    RecommendationModule, 
+    SchedulerModule
+  ],
 })
 export class AppModule {}
