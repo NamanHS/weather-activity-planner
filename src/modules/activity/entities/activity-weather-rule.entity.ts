@@ -1,8 +1,9 @@
-import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+
 import { Activity } from "./activity.entity";
 import { BaseEntity } from "src/common/database/base.entity";
-import { WeatherFactor } from "src/common/enums/weather-factor.enum";
 import { ComparisonType } from "src/common/enums/comparison-type.enum";
+import { WeatherFactor } from "src/common/enums/weather-factor.enum";
 
 @Entity('activity_weather_rules')
 export class ActivityWeatherRule extends BaseEntity {
@@ -13,50 +14,50 @@ export class ActivityWeatherRule extends BaseEntity {
       onDelete: 'CASCADE',
     },
   )
-  @JoinColumn({
-    name: 'activity_id',
-  })
+  @JoinColumn()
   activity!: Activity;
 
   @Column({
     type: 'enum',
     enum: WeatherFactor,
-    name: 'weather_factor',
   })
   weatherFactor!: WeatherFactor;
 
   @Column({
     type: 'enum',
     enum: ComparisonType,
-    name: 'comparison_type',
   })
   comparisonType!: ComparisonType;
 
   @Column({
-    name: 'value_from',
     type: 'numeric',
+    precision: 10,
+    scale: 2,
     nullable: true,
   })
   valueFrom?: number;
 
   @Column({
-    name: 'value_to',
     type: 'numeric',
+    precision: 10,
+    scale: 2,
     nullable: true,
   })
   valueTo?: number;
 
   @Column({
-    name: 'comparison_values',
     type: 'jsonb',
     nullable: true,
   })
   comparisonValues?: number[];
 
-  @Column()
+  @Column({
+    type: 'integer',
+  })
   score!: number;
 
   @Column({
+    type: 'integer',
     default: 0,
   })
   penalty!: number;

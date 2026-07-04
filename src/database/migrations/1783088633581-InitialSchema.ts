@@ -25,7 +25,7 @@ export class InitialSchema1783088633581 implements MigrationInterface {
             CREATE TABLE cities (
                 id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
                 name VARCHAR(100) NOT NULL,
-                country VARCHAR(100) NOT NULL,
+                country_code VARCHAR(2) NOT NULL,
                 latitude DECIMAL(9,6) NOT NULL,
                 longitude DECIMAL(9,6) NOT NULL,
                 timezone VARCHAR(100) NOT NULL,
@@ -35,7 +35,7 @@ export class InitialSchema1783088633581 implements MigrationInterface {
                 last_requested_at TIMESTAMPTZ,
                 created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 updated_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                CONSTRAINT uq_city_name_country UNIQUE (name, country)
+                CONSTRAINT uq_city_name_country_code UNIQUE (name, country_code)
             );
         `);
 
