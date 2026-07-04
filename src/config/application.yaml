@@ -1,6 +1,14 @@
 app:
   port: 3000
 
+logging:
+  levels:
+    - debug
+    - log
+    - warn
+    - error
+    - fatal
+
 database:
   host: '127.0.0.1'
   port: 5432
@@ -10,8 +18,13 @@ database:
   synchronize: false
   logging: true
 
-openMeteo:
-  baseUrl: https://api.open-meteo.com/v1
+clients:
+  openMeteo:
+    baseUrl: https://api.open-meteo.com/v1
+    forecastDays: 7
+    timeoutMs: 5000
+    retryCount: 3
+    retryDelayMs: 1000
 
 scheduler:
   enabled: true
