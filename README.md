@@ -1,4 +1,12 @@
-## Database Migrations
+## Database
+
+### Start PostgreSQL
+
+```bash
+docker compose up -d
+```
+
+The PostgreSQL container automatically creates the `weather_activity_planner` database during its first startup.
 
 ### Create a new migration
 
