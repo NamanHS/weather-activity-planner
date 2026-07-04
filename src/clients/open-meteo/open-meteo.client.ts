@@ -106,6 +106,7 @@ export class OpenMeteoClient {
       date,
       temperatureMin: response.daily.temperature_2m_min[index],
       temperatureMax: response.daily.temperature_2m_max[index],
+      temperatureMean: response.daily.temperature_2m_min[index],
       precipitationProbability:
         response.daily.precipitation_probability_max[index],
       weatherCode: response.daily.weather_code[index],
