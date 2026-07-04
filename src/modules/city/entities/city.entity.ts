@@ -1,5 +1,6 @@
 import { Column, Entity } from "typeorm";
 import { BaseEntity } from "src/common/database/base.entity";
+import type { CityWeatherForecast } from "src/clients/open-meteo/dto/city-weather-forecast.dto";
 
 @Entity('cities')
 export class City extends BaseEntity {
@@ -39,7 +40,7 @@ export class City extends BaseEntity {
     type: 'jsonb',
     nullable: true,
   })
-  weatherData?: Record<string, unknown>;
+  weatherData?: CityWeatherForecast;
 
   @Column({
     type: 'integer',

@@ -19,25 +19,25 @@ export class SeedMasterData1783148538800 implements MigrationInterface {
       )
       VALUES
 
-      ('Mumbai','IN',19.0760,72.8777,'Asia/Kolkata',120),
+      ('mumbai','IN',19.0760,72.8777,'Asia/Kolkata',120),
 
-      ('London','GB',51.5072,-0.1276,'Europe/London',360),
+      ('london','GB',51.5072,-0.1276,'Europe/London',360),
 
-      ('New York','US',40.7128,-74.0060,'America/New_York',240),
+      ('newyork','US',40.7128,-74.0060,'America/New_York',240),
 
-      ('Tokyo','JP',35.6762,139.6503,'Asia/Tokyo',240),
+      ('tokyo','JP',35.6762,139.6503,'Asia/Tokyo',240),
 
-      ('Sydney','AU',-33.8688,151.2093,'Australia/Sydney',240),
+      ('sydney','AU',-33.8688,151.2093,'Australia/Sydney',240),
 
-      ('Dubai','AE',25.2048,55.2708,'Asia/Dubai',360),
+      ('dubai','AE',25.2048,55.2708,'Asia/Dubai',360),
 
-      ('Paris','FR',48.8566,2.3522,'Europe/Paris',360),
+      ('paris','FR',48.8566,2.3522,'Europe/Paris',360),
 
-      ('Singapore','SG',1.3521,103.8198,'Asia/Singapore',180),
+      ('singapore','SG',1.3521,103.8198,'Asia/Singapore',180),
 
-      ('Zurich','CH',47.3769,8.5417,'Europe/Zurich',360),
+      ('zurich','CH',47.3769,8.5417,'Europe/Zurich',360),
 
-      ('Vancouver','CA',49.2827,-123.1207,'America/Vancouver',360);
+      ('vancouver','CA',49.2827,-123.1207,'America/Vancouver',360);
     `);
 
     /**
