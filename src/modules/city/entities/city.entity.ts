@@ -1,22 +1,38 @@
 import { Column, Entity } from "typeorm";
 import { BaseEntity } from "src/common/database/base.entity";
 
-
 @Entity('cities')
 export class City extends BaseEntity {
-  @Column()
+  @Column({
+    type: 'varchar',
+    length: 100,
+  })
   name!: string;
 
-  @Column()
-  country!: string;
+  @Column({
+    type: 'varchar',
+    length: 2,
+  })
+  countryCode!: string;
 
-  @Column('decimal')
+  @Column({
+    type: 'decimal',
+    precision: 9,
+    scale: 6,
+  })
   latitude!: number;
 
-  @Column('decimal')
+  @Column({
+    type: 'decimal',
+    precision: 9,
+    scale: 6,
+  })
   longitude!: number;
 
-  @Column()
+  @Column({
+    type: 'varchar',
+    length: 100,
+  })
   timezone!: string;
 
   @Column({
@@ -26,18 +42,18 @@ export class City extends BaseEntity {
   weatherData?: Record<string, unknown>;
 
   @Column({
-    name: 'refresh_interval_minutes',
+    type: 'integer',
   })
   refreshIntervalMinutes!: number;
 
   @Column({
-    name: 'last_refreshed_at',
+    type: 'timestamptz',
     nullable: true,
   })
   lastRefreshedAt?: Date;
 
   @Column({
-    name: 'last_requested_at',
+    type: 'timestamptz',
     nullable: true,
   })
   lastRequestedAt?: Date;
