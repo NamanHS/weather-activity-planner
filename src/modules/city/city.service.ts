@@ -57,8 +57,7 @@ export class CityService {
    * and whose cached weather has expired.
    */
   async refreshWeatherForEligibleCities(): Promise<void> {
-    const cityWeatherRefreshConfig = this.configService.getOrThrow<Configuration['scheduler']['cityWeatherRefresh']>('scheduler.cityWeatherRefresh');
-    const { batchSize, activeCityWindowDays } = cityWeatherRefreshConfig;
+    const { batchSize, activeCityWindowDays } = this.configService.getOrThrow<Configuration['scheduler']['cityWeatherRefresh']>('scheduler.cityWeatherRefresh');
 
     const cities = await this.findCitiesRequiringRefresh(
       activeCityWindowDays,
