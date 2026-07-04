@@ -1,11 +1,16 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common';
+import { Logger, LogLevel, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
+    const logLevels = configService.get<LogLevel[]>(
+    'logging.levels',
+    ['log', 'warn', 'error'],
+  );
+  app.useLogger(logLevels);
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -15,6 +20,9 @@ async function bootstrap() {
   );
   const port = configService.get<number>('app.port', 3000);
   await app.listen(port);
-  console.log(`Application is running on http://localhost:${port}`);
+  const logger = new Logger('Bootstrap');
+  logger.log(
+    `Application started on port:${configService.get<number>('app.port')}`,
+  );
 }
 bootstrap();

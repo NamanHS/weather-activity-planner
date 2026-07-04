@@ -5,6 +5,12 @@ export const configurationSchema = z.object({
     port: z.number(),
   }),
 
+  logging: z.object({
+    levels: z.array(
+      z.enum(['debug', 'log', 'warn', 'error', 'fatal']),
+    ),
+  }),
+
   database: z.object({
     host: z.string(),
     port: z.number(),
@@ -15,13 +21,19 @@ export const configurationSchema = z.object({
     logging: z.boolean(),
   }),
 
-  openMeteo: z.object({
-    baseUrl: z.url(),
+  clients: z.object({
+    openMeteo: z.object({
+      baseUrl: z.url(),
+      forecastDays: z.number().int().positive(),
+      timeoutMs: z.number().positive(),
+      retryCount: z.number().int().nonnegative(),
+      retryDelayMs: z.number().nonnegative(),
+    }),
   }),
 
   scheduler: z.object({
     enabled: z.boolean(),
-    batchSize: z.number(),
+    batchSize: z.number().int().positive(),
   }),
 });
 
