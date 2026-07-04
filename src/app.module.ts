@@ -5,8 +5,9 @@ import { RecommendationModule } from './modules/recommendation/recommendation.mo
 import { SchedulerModule } from './modules/scheduler/scheduler.module';
 import { ConfigModule } from './config/config.module';
 import { DatabaseModule } from './database/database.module';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
-  imports: [ConfigModule, DatabaseModule, CityModule, ActivityModule, RecommendationModule, SchedulerModule],
+  imports: [ScheduleModule.forRoot(), ConfigModule, DatabaseModule, CityModule, ActivityModule, RecommendationModule, SchedulerModule],
 })
 export class AppModule {}
