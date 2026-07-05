@@ -101,19 +101,19 @@ application-test.yaml
 application-production.yaml
 ```
 
-The configuration file is selected using
+The configuration file is selected using:
 
 ```text
 NODE_ENV
 ```
 
-For local development the application uses
+For local development:
 
 ```text
 NODE_ENV=local
 ```
 
-Database credentials can be modified inside
+Database credentials can be modified in:
 
 ```text
 src/config/application-local.yaml
@@ -135,13 +135,11 @@ The PostgreSQL container automatically creates the `weather_activity_planner` da
 
 ## Create a new migration
 
-Creates an empty migration file.
-
 ```bash
 npm run migration:create -- src/database/migrations/<MigrationName>
 ```
 
-Example
+Example:
 
 ```bash
 npm run migration:create -- src/database/migrations/CreateCityTable
@@ -151,8 +149,6 @@ npm run migration:create -- src/database/migrations/CreateCityTable
 
 ## Run migrations
 
-Applies all pending migrations.
-
 ```bash
 npm run migration:run
 ```
@@ -161,20 +157,20 @@ The project currently contains two migrations.
 
 ### InitialSchema
 
-Creates
+Creates:
 
-* Enums
-* Tables
-* Constraints
-* Indexes
+- Enums
+- Tables
+- Constraints
+- Indexes
 
 ### SeedMasterData
 
-Seeds
+Seeds:
 
-* Supported Cities
-* Activities
-* Activity Weather Rules
+- Supported Cities
+- Activities
+- Activity Weather Rules
 
 ---
 
@@ -194,27 +190,23 @@ npm run migration:show
 
 ---
 
-## Recommended migration workflow
+## Recommended Migration Workflow
 
-1.
+1. Create a migration.
 
 ```bash
 npm run migration:create -- src/database/migrations/<MigrationName>
 ```
 
-2.
+2. Implement the migration.
 
-Implement the migration.
-
-3.
+3. Apply it.
 
 ```bash
 npm run migration:run
 ```
 
-4.
-
-If required
+4. Revert if required.
 
 ```bash
 npm run migration:revert
@@ -224,8 +216,6 @@ npm run migration:revert
 
 # Running the Application
 
-Development
-
 ```bash
 npm run start:watch
 ```
@@ -234,7 +224,7 @@ npm run start:watch
 
 # GraphQL Playground
 
-After starting the application
+After starting the application:
 
 ```
 http://localhost:3000/graphql
@@ -280,7 +270,7 @@ query {
 
 # Running Tests
 
-Execute unit tests.
+Run unit tests.
 
 ```bash
 npm test
@@ -298,14 +288,14 @@ npm run test:cov
 
 Weather forecasts are **persisted** in PostgreSQL instead of calling the Open-Meteo API for every request.
 
-Each city maintains
+Each city maintains:
 
-* Latest weather forecast
-* Last refreshed timestamp
-* Last requested timestamp
-* Configurable refresh interval
+- Latest weather forecast
+- Last refreshed timestamp
+- Last requested timestamp
+- Configurable refresh interval
 
-Request flow
+Request flow:
 
 1. Client requests recommendations.
 2. Persisted weather is checked.
@@ -324,60 +314,97 @@ Recommendation logic is fully database driven.
 
 Each activity contains multiple weather rules.
 
-Supported comparisons
+Supported comparison operators:
 
-* Minimum
-* Maximum
-* Range
-* Inclusion
+- Minimum
+- Maximum
+- Range
+- Inclusion
 
-Each rule contributes
+Each rule contributes:
 
-* Score
-* Penalty
+- Score
+- Penalty
 
 Final recommendation scores are calculated independently for each forecast day.
 
 ---
 
-# Design Decisions
+# Documentation
 
-Major design decisions are documented separately.
+Additional design documentation is available under the `docs/` directory.
 
-See
+## Architecture
 
-```
-docs/decisions.md
-```
+`docs/architecture.md`
 
----
+Covers:
 
-# Architecture
-
-Architecture diagrams and design documentation are available in
-
-```
-docs/
-```
-
-including
-
-* Architecture
-* Design Decisions
-* Assumptions
-* ER Diagram
-* Request Flow
-* Scheduler Flow
+- High-level system architecture
+- End-to-end request flow
+- Weather persistence strategy
+- Scheduler workflow
+- Open-Meteo client and retry mechanism
+- Failure handling
+- Scalability considerations
 
 ---
 
-# Assumptions
+## Design Decisions
 
-All assumptions made during the implementation are documented in
+`docs/decisions.md`
 
-```
-docs/assumptions.md
-```
+Explains the architectural decisions and trade-offs, including:
+
+- PostgreSQL selection
+- JSONB for weather persistence
+- Persisting forecasts instead of fetching on every request
+- Configurable city refresh intervals
+- Refreshing only recently requested cities
+- Database-driven recommendation rules
+- Generic rule engine
+- Vendor-independent weather conditions
+- GraphQL error handling
+- Testing strategy
+
+---
+
+## Recommendation Engine
+
+`docs/recommendation-engine.md`
+
+Describes how recommendations are generated, including:
+
+- Rule evaluation process
+- Supported comparison operators
+- Score and penalty calculation
+- Activity ranking
+- Why penalties were preferred over mandatory rules
+- Extensibility of the recommendation engine
+
+---
+
+## Assumptions
+
+`docs/assumptions.md`
+
+Documents all assumptions made while implementing the assignment due to intentionally open-ended requirements.
+
+---
+
+## Entity Relationship Diagram
+
+`docs/erd.md`
+
+Contains the database model and relationships between entities.
+
+---
+
+## AI Usage
+
+`docs/ai-session.md`
+
+Documents how AI was used during development, including design discussions, implementation assistance and decision making.
 
 ---
 
@@ -385,10 +412,8 @@ docs/assumptions.md
 
 The following improvements were intentionally left out due to the time constraints.
 
-* Integration tests
-* Redis caching layer
-* Activity management APIs
-* City onboarding APIs
-* Authentication & Authorization
-
----
+- Integration tests
+- Redis caching layer
+- Activity management APIs
+- City onboarding APIs
+- Authentication & Authorization
