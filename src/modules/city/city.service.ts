@@ -3,8 +3,8 @@ import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { City } from './entities/city.entity';
-import { CityForecastRequest } from './dto/city-forcast-request.dto';
-import { CityForecastResponse } from './dto/city-forcast-response.dto';
+import { CityForecastRequest } from './dto/city-forecast-request.dto';
+import { CityForecastResponse } from './dto/city-forecast-response.dto';
 import { OpenMeteoClient } from 'src/clients/open-meteo/open-meteo.client';
 import { Configuration } from 'src/config/configuration.schema';
 
