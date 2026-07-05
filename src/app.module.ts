@@ -9,6 +9,7 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
+import { graphqlErrorMapper } from './common/errors/graphql-error.mapper';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { join } from 'path';
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       sortSchema: true,
       playground: true,
+      formatError: graphqlErrorMapper,
     }),
     ScheduleModule.forRoot(),
     ConfigModule, 
