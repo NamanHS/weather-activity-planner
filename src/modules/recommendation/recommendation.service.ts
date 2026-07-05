@@ -90,7 +90,7 @@ export class RecommendationService {
       temperatureMean: weather.temperatureMean,
       precipitationProbability:
         weather.precipitationProbability,
-      weatherCode: weather.weatherCode,
+      condition: weather.condition,
       windSpeed: weather.windSpeed,
     };
   }

@@ -4,7 +4,7 @@ export interface WeatherForecastEntry {
   temperatureMax: number;
   temperatureMean: number;
   precipitationProbability: number;
-  weatherCode: number;
+  condition: string;
   windSpeed: number;
 }
 

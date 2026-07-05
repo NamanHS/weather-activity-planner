@@ -3,6 +3,6 @@ export interface DailyWeather {
   temperatureMax: number;
   temperatureMean: number;
   precipitationProbability: number;
-  weatherCode: number;
+  condition: string;
   windSpeed: number;
 }

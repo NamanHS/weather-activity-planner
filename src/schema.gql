@@ -15,11 +15,11 @@ type DailyRecommendation {
 }
 
 type DailyWeather {
+  condition: String!
   precipitationProbability: Float!
   temperatureMax: Float!
   temperatureMean: Float!
   temperatureMin: Float!
-  weatherCode: Float!
   windSpeed: Float!
 }
 

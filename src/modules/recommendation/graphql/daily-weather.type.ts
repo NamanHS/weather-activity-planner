@@ -16,7 +16,7 @@ export class DailyWeather {
     precipitationProbability!: number;
 
     @Field()
-    weatherCode!: number;
+    condition!: string;
 
     @Field()
     windSpeed!: number;

@@ -64,7 +64,7 @@ export class ActivityRecommendationRuleEngine {
   private getWeatherValue(
     weather: WeatherForecastEntry,
     weatherFactor: WeatherFactor,
-  ): number {
+  ): any {
     switch (weatherFactor) {
       case WeatherFactor.TEMPERATURE:
         return weather.temperatureMean;
@@ -75,8 +75,8 @@ export class ActivityRecommendationRuleEngine {
       case WeatherFactor.PRECIPITATION_PROBABILITY:
         return weather.precipitationProbability;
 
-      case WeatherFactor.WEATHER_CODE:
-        return weather.weatherCode;
+      case WeatherFactor.CONDITION:
+        return weather.condition;
     }
   }
 }

@@ -109,13 +109,13 @@ export class SeedMasterData1783148538800 implements MigrationInterface {
 
       (
         (SELECT id FROM activities WHERE name='Skiing'),
-        'WEATHER_CODE',
+        'CONDITION',
         'IN',
         NULL,
         NULL,
-        '[71,73,75,77,85,86]'::jsonb,
+        '["SNOW","SNOW_SHOWERS"]'::jsonb,
         50,
-        0
+        100
       ),
 
       (
@@ -168,11 +168,11 @@ export class SeedMasterData1783148538800 implements MigrationInterface {
 
       (
         (SELECT id FROM activities WHERE name='Surfing'),
-        'WEATHER_CODE',
+        'CONDITION',
         'IN',
         NULL,
         NULL,
-        '[0,1,2,3]'::jsonb,
+        '["CLEAR","PARTLY_CLOUDY","OVERCAST"]'::jsonb,
         20,
         0
       ),
@@ -216,11 +216,11 @@ export class SeedMasterData1783148538800 implements MigrationInterface {
 
       (
         (SELECT id FROM activities WHERE name='Outdoor Sightseeing'),
-        'WEATHER_CODE',
+        'CONDITION',
         'IN',
         NULL,
         NULL,
-        '[0,1,2,3]'::jsonb,
+        '["CLEAR","PARTLY_CLOUDY","OVERCAST"]'::jsonb,
         20,
         0
       ),
@@ -253,11 +253,11 @@ export class SeedMasterData1783148538800 implements MigrationInterface {
 
       (
         (SELECT id FROM activities WHERE name='Indoor Sightseeing'),
-        'WEATHER_CODE',
+        'CONDITION',
         'IN',
         NULL,
         NULL,
-        '[51,53,55,61,63,65,80,81,82,95]'::jsonb,
+        '["DRIZZLE","RAIN","HEAVY_RAIN","RAIN_SHOWERS","THUNDERSTORM"]'::jsonb,
         30,
         0
       ),
