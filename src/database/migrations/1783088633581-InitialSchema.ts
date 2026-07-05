@@ -1,9 +1,8 @@
-import { MigrationInterface, QueryRunner } from "typeorm";
+import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class InitialSchema1783088633581 implements MigrationInterface {
-
-    public async up(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`
+  public async up(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.query(`
             CREATE TYPE weather_factor AS ENUM (
                 'TEMPERATURE',
                 'WIND_SPEED',
@@ -12,7 +11,7 @@ export class InitialSchema1783088633581 implements MigrationInterface {
             );
         `);
 
-        await queryRunner.query(`
+    await queryRunner.query(`
             CREATE TYPE comparison_type AS ENUM (
                 'MIN',
                 'MAX',
@@ -21,7 +20,7 @@ export class InitialSchema1783088633581 implements MigrationInterface {
             );
         `);
 
-        await queryRunner.query(`
+    await queryRunner.query(`
             CREATE TABLE cities (
                 id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
                 name VARCHAR(100) NOT NULL,
@@ -39,17 +38,17 @@ export class InitialSchema1783088633581 implements MigrationInterface {
             );
         `);
 
-        await queryRunner.query(`
+    await queryRunner.query(`
             CREATE INDEX idx_city_last_requested_at
             ON cities(last_requested_at);
         `);
 
-        await queryRunner.query(`
+    await queryRunner.query(`
             CREATE INDEX idx_city_last_refreshed_at
             ON cities(last_refreshed_at);
         `);
 
-        await queryRunner.query(`
+    await queryRunner.query(`
             CREATE TABLE activities (
                 id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
                 name VARCHAR(100) NOT NULL UNIQUE,
@@ -59,7 +58,7 @@ export class InitialSchema1783088633581 implements MigrationInterface {
             );
         `);
 
-        await queryRunner.query(`
+    await queryRunner.query(`
             CREATE TABLE activity_weather_rules (
                 id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
                 activity_id INTEGER NOT NULL,
@@ -108,45 +107,43 @@ export class InitialSchema1783088633581 implements MigrationInterface {
             );
         `);
 
-        await queryRunner.query(`
+    await queryRunner.query(`
             CREATE INDEX idx_activity_weather_rules_activity_id
             ON activity_weather_rules(activity_id);
         `);
+  }
 
-    }
-
-    public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`
+  public async down(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.query(`
             DROP INDEX IF EXISTS idx_activity_weather_rules_activity_id;
         `);
 
-        await queryRunner.query(`
+    await queryRunner.query(`
             DROP TABLE IF EXISTS activity_weather_rules;
         `);
 
-        await queryRunner.query(`
+    await queryRunner.query(`
             DROP TABLE IF EXISTS activities;
         `);
 
-        await queryRunner.query(`
+    await queryRunner.query(`
             DROP INDEX IF EXISTS idx_city_last_requested_at;
         `);
 
-        await queryRunner.query(`
+    await queryRunner.query(`
             DROP INDEX IF EXISTS idx_city_last_refreshed_at;
         `);
 
-        await queryRunner.query(`
+    await queryRunner.query(`
             DROP TABLE IF EXISTS cities;
         `);
 
-        await queryRunner.query(`
+    await queryRunner.query(`
             DROP TYPE IF EXISTS comparison_type;
         `);
 
-        await queryRunner.query(`
+    await queryRunner.query(`
             DROP TYPE IF EXISTS weather_factor;
         `);
-    }
-
+  }
 }

@@ -6,9 +6,7 @@ export const configurationSchema = z.object({
   }),
 
   logging: z.object({
-    levels: z.array(
-      z.enum(['debug', 'log', 'warn', 'error', 'fatal']),
-    ),
+    levels: z.array(z.enum(['debug', 'log', 'warn', 'error', 'fatal'])),
   }),
 
   database: z.object({
@@ -36,7 +34,7 @@ export const configurationSchema = z.object({
       enabled: z.boolean(),
       batchSize: z.number().int().positive(),
       activeCityWindowDays: z.number().int().positive(),
-    })
+    }),
   }),
 });
 

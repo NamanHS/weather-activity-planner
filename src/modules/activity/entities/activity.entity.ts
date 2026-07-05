@@ -1,6 +1,6 @@
-import { BaseEntity } from "src/common/database/base.entity";
-import { Column, Entity, OneToMany } from "typeorm";
-import { ActivityWeatherRule } from "./activity-weather-rule.entity";
+import { BaseEntity } from 'src/common/database/base.entity';
+import { Column, Entity, OneToMany } from 'typeorm';
+import { ActivityWeatherRule } from './activity-weather-rule.entity';
 
 @Entity('activities')
 export class Activity extends BaseEntity {
@@ -17,9 +17,6 @@ export class Activity extends BaseEntity {
   })
   description?: string;
 
-  @OneToMany(
-    () => ActivityWeatherRule,
-    (rule) => rule.activity,
-  )
+  @OneToMany(() => ActivityWeatherRule, (rule) => rule.activity)
   weatherRules!: ActivityWeatherRule[];
 }

@@ -34,8 +34,7 @@ export class RecommendationService {
     const { forecast, lastRefreshedAt } =
       await this.cityService.getForecast(request);
 
-    const activities =
-      await this.activityService.getActivitiesWithRules();
+    const activities = await this.activityService.getActivitiesWithRules();
 
     const dailyRecommendations = forecast.forecasts.map((weather) =>
       this.createDailyRecommendation(weather, activities),
@@ -58,10 +57,7 @@ export class RecommendationService {
     return {
       date: weather.date,
       weather: this.mapWeather(weather),
-      activities: this.getRecommendedActivities(
-        weather,
-        activities,
-      ),
+      activities: this.getRecommendedActivities(weather, activities),
     };
   }
 
@@ -73,23 +69,17 @@ export class RecommendationService {
       .map((activity) => ({
         activityName: activity.name,
         activityDescription: activity.description,
-        score: this.ruleEngine.calculateScore(
-          activity,
-          weather,
-        ),
+        score: this.ruleEngine.calculateScore(activity, weather),
       }))
       .sort((left, right) => right.score - left.score);
   }
 
-  private mapWeather(
-    weather: WeatherForecastEntry,
-  ): DailyWeather {
+  private mapWeather(weather: WeatherForecastEntry): DailyWeather {
     return {
       temperatureMin: weather.temperatureMin,
       temperatureMax: weather.temperatureMax,
       temperatureMean: weather.temperatureMean,
-      precipitationProbability:
-        weather.precipitationProbability,
+      precipitationProbability: weather.precipitationProbability,
       condition: weather.condition,
       windSpeed: weather.windSpeed,
     };

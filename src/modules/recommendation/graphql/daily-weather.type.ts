@@ -1,23 +1,22 @@
-import { Field, ObjectType } from "@nestjs/graphql";
+import { Field, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
 export class DailyWeather {
+  @Field()
+  temperatureMin!: number;
 
-    @Field()
-    temperatureMin!: number;
+  @Field()
+  temperatureMax!: number;
 
-    @Field()
-    temperatureMax!: number;
+  @Field()
+  temperatureMean!: number;
 
-    @Field()
-    temperatureMean!: number;
+  @Field()
+  precipitationProbability!: number;
 
-    @Field()
-    precipitationProbability!: number;
+  @Field()
+  condition!: string;
 
-    @Field()
-    condition!: string;
-
-    @Field()
-    windSpeed!: number;
+  @Field()
+  windSpeed!: number;
 }

@@ -1,6 +1,6 @@
-import { Column, Entity } from "typeorm";
-import { BaseEntity } from "src/common/database/base.entity";
-import type { CityWeatherForecast } from "src/clients/open-meteo/dto/city-weather-forecast.dto";
+import { Column, Entity } from 'typeorm';
+import { BaseEntity } from 'src/common/database/base.entity';
+import type { CityWeatherForecast } from 'src/clients/open-meteo/dto/city-weather-forecast.dto';
 
 @Entity('cities')
 export class City extends BaseEntity {

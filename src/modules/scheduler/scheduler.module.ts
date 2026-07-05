@@ -4,6 +4,6 @@ import { CityModule } from '../city/city.module';
 
 @Module({
   imports: [CityModule],
-  providers: [SchedulerService]
+  providers: [SchedulerService],
 })
 export class SchedulerModule {}

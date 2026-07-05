@@ -8,10 +8,7 @@ import { WeatherFactor } from 'src/common/enums/weather-factor.enum';
 
 @Injectable()
 export class ActivityRecommendationRuleEngine {
-  calculateScore(
-    activity: Activity,
-    weather: WeatherForecastEntry,
-  ): number {
+  calculateScore(activity: Activity, weather: WeatherForecastEntry): number {
     let score = 0;
 
     for (const rule of activity.weatherRules) {
@@ -29,10 +26,7 @@ export class ActivityRecommendationRuleEngine {
     rule: ActivityWeatherRule,
     weather: WeatherForecastEntry,
   ): boolean {
-    const weatherValue = this.getWeatherValue(
-      weather,
-      rule.weatherFactor,
-    );
+    const weatherValue = this.getWeatherValue(weather, rule.weatherFactor);
 
     switch (rule.comparisonType) {
       case ComparisonType.MIN:
@@ -42,15 +36,10 @@ export class ActivityRecommendationRuleEngine {
         return weatherValue <= rule.valueFrom!;
 
       case ComparisonType.RANGE:
-        return (
-          weatherValue >= rule.valueFrom! &&
-          weatherValue <= rule.valueTo!
-        );
+        return weatherValue >= rule.valueFrom! && weatherValue <= rule.valueTo!;
 
       case ComparisonType.IN:
-        return (
-          rule.comparisonValues?.includes(weatherValue) ?? false
-        );
+        return rule.comparisonValues?.includes(weatherValue) ?? false;
 
       default:
         return false;

@@ -7,14 +7,12 @@ import { RecommendationInput } from './graphql/recommendation.input';
 
 @Resolver()
 export class RecommendationResolver {
-    constructor(
-        private readonly recommendationService: RecommendationService,
-    ) {}
+  constructor(private readonly recommendationService: RecommendationService) {}
 
-    @Query(() => RecommendationResponse)
-    async activityRecommendations(
-        @Args('input') input: RecommendationInput,
-    ): Promise<RecommendationResponse> {
-        return this.recommendationService.getRecommendations(input);
-    }
+  @Query(() => RecommendationResponse)
+  async activityRecommendations(
+    @Args('input') input: RecommendationInput,
+  ): Promise<RecommendationResponse> {
+    return this.recommendationService.getRecommendations(input);
+  }
 }

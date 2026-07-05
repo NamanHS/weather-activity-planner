@@ -7,6 +7,6 @@ import { ActivityWeatherRule } from './entities/activity-weather-rule.entity';
 @Module({
   providers: [ActivityService],
   imports: [TypeOrmModule.forFeature([Activity, ActivityWeatherRule])],
-  exports: [ActivityService]
+  exports: [ActivityService],
 })
 export class ActivityModule {}
