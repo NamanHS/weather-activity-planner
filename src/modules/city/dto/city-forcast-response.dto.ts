@@ -1,4 +1,4 @@
-import { CityWeatherForecast } from "src/clients/open-meteo/dto/city-weather-forecast.dto";
+import { CityWeatherForecast } from 'src/clients/open-meteo/dto/city-weather-forecast.dto';
 
 export interface CityForecastResponse {
   forecast: CityWeatherForecast;

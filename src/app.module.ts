@@ -21,12 +21,12 @@ import { graphqlErrorMapper } from './common/errors/graphql-error.mapper';
       formatError: graphqlErrorMapper,
     }),
     ScheduleModule.forRoot(),
-    ConfigModule, 
-    DatabaseModule, 
-    CityModule, 
-    ActivityModule, 
-    RecommendationModule, 
-    SchedulerModule
+    ConfigModule,
+    DatabaseModule,
+    CityModule,
+    ActivityModule,
+    RecommendationModule,
+    SchedulerModule,
   ],
 })
 export class AppModule {}

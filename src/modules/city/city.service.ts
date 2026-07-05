@@ -1,8 +1,4 @@
-import {
-  Injectable,
-  Logger,
-  NotFoundException,
-} from '@nestjs/common';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -11,7 +7,6 @@ import { CityForecastRequest } from './dto/city-forcast-request.dto';
 import { CityForecastResponse } from './dto/city-forcast-response.dto';
 import { OpenMeteoClient } from 'src/clients/open-meteo/open-meteo.client';
 import { Configuration } from 'src/config/configuration.schema';
-
 
 @Injectable()
 export class CityService {
@@ -27,10 +22,7 @@ export class CityService {
   async getForecast(
     request: CityForecastRequest,
   ): Promise<CityForecastResponse> {
-    const city = await this.findCity(
-      request.cityName,
-      request.countryCode,
-    );
+    const city = await this.findCity(request.cityName, request.countryCode);
 
     this.logger.debug(
       `Weather requested for ${city.name}, ${city.countryCode}`,
@@ -57,25 +49,16 @@ export class CityService {
    * and whose cached weather has expired.
    */
   async refreshWeatherForEligibleCities(): Promise<void> {
-    const { batchSize, activeCityWindowDays } = this.configService.getOrThrow<Configuration['scheduler']['cityWeatherRefresh']>('scheduler.cityWeatherRefresh');
+    const { batchSize, activeCityWindowDays } = this.configService.getOrThrow<
+      Configuration['scheduler']['cityWeatherRefresh']
+    >('scheduler.cityWeatherRefresh');
 
-    const cities = await this.findCitiesRequiringRefresh(
-      activeCityWindowDays,
-    );
+    const cities = await this.findCitiesRequiringRefresh(activeCityWindowDays);
 
-    this.logger.log(
-      `Refreshing weather for ${cities.length} eligible cities.`,
-    );
+    this.logger.log(`Refreshing weather for ${cities.length} eligible cities.`);
 
-    for (
-      let index = 0;
-      index < cities.length;
-      index += batchSize
-    ) {
-      const batch = cities.slice(
-        index,
-        index + batchSize,
-      );
+    for (let index = 0; index < cities.length; index += batchSize) {
+      const batch = cities.slice(index, index + batchSize);
 
       await Promise.all(
         batch.map(async (city) => {
@@ -97,10 +80,7 @@ export class CityService {
     );
   }
 
-  private async findCity(
-    cityName: string,
-    countryCode: string,
-  ): Promise<City> {
+  private async findCity(cityName: string, countryCode: string): Promise<City> {
     const city = await this.cityRepository.findOne({
       where: {
         name: cityName.trim().toLowerCase(),
@@ -157,7 +137,7 @@ export class CityService {
       latitude: city.latitude,
       longitude: city.longitude,
       timezone: city.timezone,
-      cityName: city.name
+      cityName: city.name,
     });
 
     city.lastRefreshedAt = new Date();
@@ -169,8 +149,7 @@ export class CityService {
     }
 
     const nextRefreshTime =
-      city.lastRefreshedAt.getTime() +
-      city.refreshIntervalMinutes * 60_000;
+      city.lastRefreshedAt.getTime() + city.refreshIntervalMinutes * 60_000;
 
     return Date.now() >= nextRefreshTime;
   }

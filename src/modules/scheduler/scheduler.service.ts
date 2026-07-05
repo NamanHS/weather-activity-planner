@@ -15,14 +15,13 @@ export class SchedulerService {
 
   /**
    * Runs every 30 minutes.
-   * 
+   *
    */
   @Cron('0 */30 * * * *')
   async refreshCityWeather(): Promise<void> {
-    const { enabled } =
-      this.configService.getOrThrow<
-        Configuration['scheduler']['cityWeatherRefresh']
-      >('scheduler.cityWeatherRefresh');
+    const { enabled } = this.configService.getOrThrow<
+      Configuration['scheduler']['cityWeatherRefresh']
+    >('scheduler.cityWeatherRefresh');
 
     if (!enabled) {
       this.logger.debug('City weather refresh scheduler is disabled.');

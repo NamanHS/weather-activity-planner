@@ -7,6 +7,10 @@ import { ActivityRecommendationRuleEngine } from './activity-recommendation-rule
 
 @Module({
   imports: [CityModule, ActivityModule],
-  providers: [RecommendationService, ActivityRecommendationRuleEngine, RecommendationResolver]
+  providers: [
+    RecommendationService,
+    ActivityRecommendationRuleEngine,
+    RecommendationResolver,
+  ],
 })
 export class RecommendationModule {}

@@ -27,15 +27,10 @@ export class OpenMeteoClient {
   async getWeatherForecast(
     request: OpenMeteoRequestDto,
   ): Promise<CityWeatherForecast> {
-    const {
-      baseUrl,
-      forecastDays,
-      timeoutMs,
-      retryCount,
-      retryDelayMs,
-    } = this.configService.getOrThrow<Configuration['clients']['openMeteo']>(
-      'clients.openMeteo',
-    );
+    const { baseUrl, forecastDays, timeoutMs, retryCount, retryDelayMs } =
+      this.configService.getOrThrow<Configuration['clients']['openMeteo']>(
+        'clients.openMeteo',
+      );
 
     const params = {
       latitude: request.latitude,
@@ -58,13 +53,10 @@ export class OpenMeteoClient {
         );
 
         const response = await firstValueFrom(
-          this.httpService.get<OpenMeteoResponseDto>(
-            `${baseUrl}/forecast`,
-            {
-              timeout: timeoutMs,
-              params,
-            },
-          ),
+          this.httpService.get<OpenMeteoResponseDto>(`${baseUrl}/forecast`, {
+            timeout: timeoutMs,
+            params,
+          }),
         );
 
         this.logger.debug(
@@ -100,9 +92,7 @@ export class OpenMeteoClient {
     );
   }
 
-  private mapForecast(
-    response: OpenMeteoResponseDto,
-  ): WeatherForecastEntry[] {
+  private mapForecast(response: OpenMeteoResponseDto): WeatherForecastEntry[] {
     return response.daily.time.map((date, index) => ({
       date,
       temperatureMin: response.daily.temperature_2m_min[index],

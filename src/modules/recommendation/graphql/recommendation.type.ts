@@ -1,11 +1,11 @@
-import { Field, ObjectType } from "@nestjs/graphql";
-import { DailyRecommendation } from "./daily-recommendation.type";
+import { Field, ObjectType } from '@nestjs/graphql';
+import { DailyRecommendation } from './daily-recommendation.type';
 
 @ObjectType()
 export class RecommendationResponse {
-    @Field(() => Date, { nullable: true })
-    lastRefreshedAt?: Date | null;
+  @Field(() => Date, { nullable: true })
+  lastRefreshedAt?: Date | null;
 
-    @Field(() => [DailyRecommendation])
-    dailyRecommendations!: DailyRecommendation[];
+  @Field(() => [DailyRecommendation])
+  dailyRecommendations!: DailyRecommendation[];
 }

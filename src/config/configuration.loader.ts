@@ -19,23 +19,12 @@ function loadYaml(file: string) {
 export default () => {
   const env = process.env.NODE_ENV ?? 'local';
   const configDirectory = join(process.cwd(), 'src', 'config');
-  const defaultConfig = loadYaml(
-    join(configDirectory, 'application.yaml'),
-  );
-  const envFile = join(
-    configDirectory,
-    `application-${env}.yaml`,
-  );
+  const defaultConfig = loadYaml(join(configDirectory, 'application.yaml'));
+  const envFile = join(configDirectory, `application-${env}.yaml`);
 
-  const environmentConfig = existsSync(envFile)
-    ? loadYaml(envFile)
-    : {};
+  const environmentConfig = existsSync(envFile) ? loadYaml(envFile) : {};
 
-  const configuration = merge(
-    {},
-    defaultConfig,
-    environmentConfig,
-  );
+  const configuration = merge({}, defaultConfig, environmentConfig);
 
   return configurationSchema.parse(configuration);
 };

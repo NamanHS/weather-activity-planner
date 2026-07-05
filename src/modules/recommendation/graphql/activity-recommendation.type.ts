@@ -1,14 +1,13 @@
-import { Field, ObjectType } from "@nestjs/graphql";
+import { Field, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
 export class ActivityRecommendation {
+  @Field()
+  activityName!: string;
 
-    @Field()
-    activityName!: string;
+  @Field({ nullable: true })
+  activityDescription?: string;
 
-    @Field({ nullable: true })
-    activityDescription?: string;
-
-    @Field()
-    score!: number;
+  @Field()
+  score!: number;
 }

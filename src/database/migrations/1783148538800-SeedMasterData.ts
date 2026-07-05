@@ -2,7 +2,6 @@ import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class SeedMasterData1783148538800 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
-
     /**
      * Cities
      */

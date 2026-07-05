@@ -1,19 +1,15 @@
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 
-import { Activity } from "./activity.entity";
-import { BaseEntity } from "src/common/database/base.entity";
-import { ComparisonType } from "src/common/enums/comparison-type.enum";
-import { WeatherFactor } from "src/common/enums/weather-factor.enum";
+import { Activity } from './activity.entity';
+import { BaseEntity } from 'src/common/database/base.entity';
+import { ComparisonType } from 'src/common/enums/comparison-type.enum';
+import { WeatherFactor } from 'src/common/enums/weather-factor.enum';
 
 @Entity('activity_weather_rules')
 export class ActivityWeatherRule extends BaseEntity {
-  @ManyToOne(
-    () => Activity,
-    (activity) => activity.weatherRules,
-    {
-      onDelete: 'CASCADE',
-    },
-  )
+  @ManyToOne(() => Activity, (activity) => activity.weatherRules, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn()
   activity!: Activity;
 
