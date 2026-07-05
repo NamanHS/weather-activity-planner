@@ -6,6 +6,7 @@ import { OpenMeteoModule } from 'src/clients/open-meteo/open-meteo.module';
 
 @Module({
   providers: [CityService],
-  imports: [TypeOrmModule.forFeature([City]), OpenMeteoModule]
+  imports: [TypeOrmModule.forFeature([City]), OpenMeteoModule],
+  exports: [CityService]
 })
 export class CityModule {}

@@ -1,15 +1,26 @@
 import { Injectable } from '@nestjs/common';
-import { Activity } from './entities/activity.entity';
-import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ActivityWeatherRule } from './entities/activity-weather-rule.entity';
+import { Repository } from 'typeorm';
+import { Activity } from './entities/activity.entity';
 
 @Injectable()
 export class ActivityService {
-    constructor(
+  constructor(
     @InjectRepository(Activity)
     private readonly activityRepository: Repository<Activity>,
-    @InjectRepository(ActivityWeatherRule)
-    private readonly activityWeatherRuleRepository: Repository<ActivityWeatherRule>,
-    ) {}
+  ) {}
+
+  async getActivitiesWithRules(): Promise<Activity[]> {
+    return this.activityRepository.find({
+      relations: {
+        weatherRules: true,
+      },
+      order: {
+        id: 'ASC',
+        weatherRules: {
+          id: 'ASC',
+        },
+      },
+    });
+  }
 }

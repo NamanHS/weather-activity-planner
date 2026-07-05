@@ -1,13 +1,8 @@
-export interface WeatherForecastEntry {
-  date: string;
+export interface DailyWeather {
   temperatureMin: number;
   temperatureMax: number;
   temperatureMean: number;
   precipitationProbability: number;
   condition: string;
   windSpeed: number;
-}
-
-export interface CityWeatherForecast {
-  forecasts: WeatherForecastEntry[];
 }

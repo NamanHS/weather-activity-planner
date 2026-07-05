@@ -32,8 +32,11 @@ export const configurationSchema = z.object({
   }),
 
   scheduler: z.object({
-    enabled: z.boolean(),
-    batchSize: z.number().int().positive(),
+    cityWeatherRefresh: z.object({
+      enabled: z.boolean(),
+      batchSize: z.number().int().positive(),
+      activeCityWindowDays: z.number().int().positive(),
+    })
   }),
 });
 

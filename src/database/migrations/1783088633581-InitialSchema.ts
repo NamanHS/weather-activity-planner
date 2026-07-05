@@ -8,7 +8,7 @@ export class InitialSchema1783088633581 implements MigrationInterface {
                 'TEMPERATURE',
                 'WIND_SPEED',
                 'PRECIPITATION_PROBABILITY',
-                'WEATHER_CODE'
+                'CONDITION'
             );
         `);
 
@@ -67,6 +67,11 @@ export class InitialSchema1783088633581 implements MigrationInterface {
                 comparison_type comparison_type NOT NULL,
                 value_from NUMERIC(10,2),
                 value_to NUMERIC(10,2),
+                -- Stores comparison values for IN rules.
+                -- Examples:
+                -- ["SNOW"]
+                -- ["RAIN","HEAVY_RAIN"]
+                -- ["CLEAR","PARTLY_CLOUDY"]
                 comparison_values JSONB,
                 score INTEGER NOT NULL,
                 penalty INTEGER NOT NULL DEFAULT 0,
@@ -76,7 +81,7 @@ export class InitialSchema1783088633581 implements MigrationInterface {
                     FOREIGN KEY (activity_id)
                     REFERENCES activities(id)
                     ON DELETE CASCADE,
-                CONSTRAINT chk_activity_weather_rule_values
+                CONSTRAINT chk_activity_weather_rule_comparison_values
                     CHECK (
                         (
                             comparison_type IN ('MIN', 'MAX')

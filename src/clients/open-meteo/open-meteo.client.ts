@@ -13,6 +13,7 @@ import {
   CityWeatherForecast,
   WeatherForecastEntry,
 } from './dto/city-weather-forecast.dto';
+import { WEATHER_CODE_MAPPING } from './weather-condition.mapper';
 
 @Injectable()
 export class OpenMeteoClient {
@@ -106,9 +107,10 @@ export class OpenMeteoClient {
       date,
       temperatureMin: response.daily.temperature_2m_min[index],
       temperatureMax: response.daily.temperature_2m_max[index],
+      temperatureMean: response.daily.temperature_2m_min[index],
       precipitationProbability:
         response.daily.precipitation_probability_max[index],
-      weatherCode: response.daily.weather_code[index],
+      condition: WEATHER_CODE_MAPPING[response.daily.weather_code[index]],
       windSpeed: response.daily.wind_speed_10m_max[index],
     }));
   }

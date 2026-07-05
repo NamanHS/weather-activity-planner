@@ -27,5 +27,7 @@ clients:
     retryDelayMs: 1000
 
 scheduler:
-  enabled: true
-  batchSize: 20
+  cityWeatherRefresh:
+    enabled: true
+    batchSize: 20
+    activeCityWindowDays: 7
