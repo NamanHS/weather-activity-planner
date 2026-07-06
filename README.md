@@ -76,7 +76,7 @@ src
 Clone the repository.
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/NamanHS/weather-activity-planner.git
 
 cd weather-activity-planner
 ```
@@ -227,7 +227,7 @@ npm run start:watch
 After starting the application:
 
 ```
-http://localhost:3000/graphql
+http://localhost:8080/graphql
 ```
 
 ---
