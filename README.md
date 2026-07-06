@@ -89,6 +89,34 @@ npm install
 
 ---
 
+# Quick Start
+
+Run the following commands to start the application locally.
+
+```bash
+# Install dependencies
+npm install
+
+# Start PostgreSQL
+docker compose up -d
+
+# Apply database schema and seed data
+npm run migration:run
+
+# Start the application
+npm run start:watch
+```
+
+Once the application starts, open:
+
+```
+http://localhost:8080/graphql
+```
+
+Run the example GraphQL query provided below to verify the application is working correctly.
+
+---
+
 # Configuration
 
 The application loads configuration from YAML files.
@@ -121,7 +149,7 @@ src/config/application-local.yaml
 
 ---
 
-# Database
+# Database Migration guide
 
 ## Start PostgreSQL
 
