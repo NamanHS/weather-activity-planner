@@ -413,6 +413,7 @@ Documents how AI was used during development, including design discussions, impl
 The following improvements were intentionally left out due to the time constraints.
 
 - Integration tests
+- Alerting and Monitoring
 - Redis caching layer
 - Activity management APIs
 - City onboarding APIs
