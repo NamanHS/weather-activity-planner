@@ -143,3 +143,19 @@ The current design scales well because it:
 - processes scheduler refreshes in configurable concurrent batches
 - keeps recommendation rules data-driven instead of hardcoded
 - isolates third-party API failures from the rest of the application
+
+---
+
+## Operational Monitoring
+
+To improve production reliability, the scheduler should be monitored through application metrics and alerting.
+
+Recommended alerts include:
+
+- Scheduler job fails continuously for a configurable number of executions within a configurable time window.
+- Consecutive Open-Meteo API failures exceed a configured threshold.
+- Number of eligible cities awaiting refresh grows unexpectedly.
+
+These alerts enable operators to detect issues such as scheduler failures, third-party API outages, or persistent refresh backlogs before they impact users.
+
+**Note:** Alerting and monitoring infrastructure (CloudWatch, Newrelic, etc) was not implemented as part of this assignment due to time constraints but would be recommended for a production deployment.
